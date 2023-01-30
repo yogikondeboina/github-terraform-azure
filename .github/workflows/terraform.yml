@@ -34,8 +34,8 @@ jobs:
       
     - name: terraform Plan
       run: |
-       cd src/terraform
-       terraform plan 
+        cd src/terraform
+        terraform plan 
       working-directory: ${{ env.ROOT_PATH }}
   terraform_apply:
     name: 'terraform apply'
