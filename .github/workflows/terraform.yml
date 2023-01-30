@@ -33,7 +33,7 @@ jobs:
         terraform init
       
     - name: terraform Plan
-      run:
+      run: |
        cd src/terraform
        terraform plan 
       working-directory: ${{ env.ROOT_PATH }}
@@ -57,7 +57,9 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
  
     - name: terraform Init
-      run: terraform init
+      run: | 
+        cd src/terraform
+        terraform init
       working-directory: ${{ env.ROOT_PATH }}
 
     - name: terraform Apply
