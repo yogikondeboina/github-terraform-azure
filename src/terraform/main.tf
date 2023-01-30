@@ -1,31 +1,25 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.46.0"
-    }
-  }
-
- backend "azurerm" {
-    resource_group_name  = "friday-demo-rg"
-    storage_account_name = "sttfstatemgt01"
-    container_name       = "tfstate"
-    key                  = "dev.terraform.tfstate"
-  }
-}
-
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  # subscription_id = var.subscription_id
-  # client_id       = var.client_id
-  # client_secret   = var.client_secret
-  # tenant_id       = var.tenant_id
 }
 
+resource "azurerm_resource_group" "example" {
+  name     = "demorgapp"
+  location = "east us"
+}
 
-# Create a resource group
-resource "azurerm_resource_group" "rg" {
-  name     = "demo-rg"
-  location = "eastus"
+resource "azurerm_service_plan" "example" {
+  name                = "servier"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  sku_name            = "P1v2"
+  os_type             = "Windows"
+}
+
+resource "azurerm_windows_web_app" "example" {
+  name                = "appservice-widowsgit"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_service_plan.example.location
+  service_plan_id     = azurerm_service_plan.example.id
+
+  site_config {}
 }
