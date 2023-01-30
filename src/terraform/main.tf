@@ -3,6 +3,9 @@
      client_id       = "f32b4b85-619b-41d4-b779-0a538fb455db"
      client_secret   = "ZbP8Q~_AinlyngV2anUj6IMjT6wuNMZvmdBd7cFZ"
      tenant_id       = "90b59039-d7b6-4056-bd4a-0c8614d852a8"
+     features {
+       
+     }
 }
 
 resource "azurerm_resource_group" "example" {
