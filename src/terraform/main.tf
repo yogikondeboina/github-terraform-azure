@@ -1,23 +1,14 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.41.0"
-    }
- 
- }
- provider "azurerm" {
+provider "azurerm" {
   features {}
-}
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "demorgapp"
+  name     = "demorg-4"
   location = "east us"
 }
 
 resource "azurerm_service_plan" "example" {
-  name                = "servier"
+  name                = "server"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   sku_name            = "P1v2"
@@ -25,7 +16,7 @@ resource "azurerm_service_plan" "example" {
 }
 
 resource "azurerm_windows_web_app" "example" {
-  name                = "appservice-widowsgit"
+  name                = "appserviceinwindowsforservier"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
   service_plan_id     = azurerm_service_plan.example.id
