@@ -28,8 +28,10 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
     - name: terraform init
-      run: terraform init
-      working-directory: ${{ env.ROOT_PATH }}
+      run: |
+        cd src/terraform
+        terraform init
+      
     - name: terraform Plan
       run: terraform plan 
       working-directory: ${{ env.ROOT_PATH }}
